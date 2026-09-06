@@ -1,0 +1,45 @@
+FIELD REPORT PHOTOS SETUP
+=========================
+
+Place your 17 report photos in the frontend/public/ folder with these exact filenames:
+
+Report Photos by ID:
+====================
+
+1. report-photo-1.jpg     - Report 1
+2. report-photo-2.jpg     - Report 2
+3. report-photo-3.jpg     - Report 3
+4. report-photo-4.jpg     - Report 4
+5. report-photo-5.jpg     - Report 5
+6. report-photo-6.jpg     - Report 6
+7. report-photo-7.jpg     - Report 7
+8. report-photo-8.jpg     - Report 8
+9. report-photo-9.jpg     - Report 9
+10. report-photo-10.jpg   - Report 10
+11. report-photo-11.jpg   - Report 11
+12. report-photo-12.jpg   - Report 12
+13. report-photo-13.jpg   - Report 13
+14. report-photo-14.jpg   - Report 14
+15. report-photo-15.jpg   - Report 15
+16. report-photo-16.jpg   - Report 16
+17. report-photo-17.jpg   - Report 17
+
+How It Works:
+=============
+
+1. When you click on a report card in the Alerts page
+2. The ReportDetailsModal opens
+3. Each report automatically looks for its photo: /report-photo-{ID}.jpg
+4. If found → displays the photo at the top
+5. If not found → shows gradient placeholder with camera emoji (📸)
+
+File Format:
+============
+- JPG or PNG format recommended
+- Square, landscape, or portrait orientation all work
+- Recommended minimum size: 600x400px
+
+Example:
+If you click on Report #5, it will look for: report-photo-5.jpg
+
+Just upload your 17 photos with the exact filenames above, and they'll automatically appear!

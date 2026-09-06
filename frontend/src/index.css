@@ -1,0 +1,602 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================ */
+/* GIGW 3.0 COMPLIANT LIGHT MODE (DEFAULT)    */
+/* ============================================ */
+
+:root {
+  /* Color Variables */
+  --color-gov-navy: #1e3a8a;
+  --color-gov-navy-dark: #0f172a;
+  --color-gov-saffron: #d97706;
+  --color-bg-light: #f8fafc;
+  --color-bg-white: #ffffff;
+  --color-text-dark: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border-light: #cbd5e1;
+  --color-border-lighter: #e2e8f0;
+  --color-alert-critical-bg: #fef2f2;
+  --color-alert-critical-border: #dc2626;
+  --color-alert-critical-text: #7f1d1d;
+  --color-alert-high-bg: #fff7ed;
+  --color-alert-high-border: #d97706;
+  --color-alert-high-text: #7c2d12;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg-light);
+  color-scheme: light;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Arial, sans-serif;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: var(--color-gov-navy-dark);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+a {
+  color: var(--color-gov-navy);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-gov-saffron);
+  text-decoration: underline;
+}
+
+/* Remove underline from header brand link */
+a.no-underline,
+a.no-underline:hover {
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-gov-navy);
+  outline-offset: 2px;
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid var(--color-border-light);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-bg-white);
+  color: var(--color-text-dark);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-gov-navy);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+textarea {
+  font-family: inherit;
+  resize: vertical;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-gov-navy);
+  outline-offset: 2px;
+}
+
+/* Standard Button Styles - GIGW Compliant */
+
+/* Primary Button (Government Navy) */
+.btn-primary {
+  background-color: var(--color-gov-navy);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid #1e3a8a;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0f172a;
+  border-color: #0f172a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-gov-navy);
+  outline-offset: 2px;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Secondary Button (White with border) */
+.btn-secondary {
+  background-color: white;
+  color: var(--color-gov-navy);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border-light);
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-border-lighter);
+  border-color: var(--color-text-muted);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--color-gov-navy);
+  outline-offset: 2px;
+}
+
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Danger Button (Red alert) */
+.btn-danger {
+  background-color: #dc2626;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid #b91c1c;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+  border-color: #7f1d1d;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.15);
+}
+
+.btn-danger:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+.btn-danger:active {
+  transform: translateY(1px);
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Success Button (Green) */
+.btn-success {
+  background-color: #059669;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid #047857;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+  background-color: #047857;
+  border-color: #065f46;
+  box-shadow: 0 2px 4px rgba(5, 150, 105, 0.15);
+}
+
+.btn-success:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+}
+
+.btn-success:active {
+  transform: translateY(1px);
+}
+
+.btn-success:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tertiary/Ghost Button (Minimal) */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-gov-navy);
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-border-lighter);
+  border-color: var(--color-border-light);
+  color: #0f172a;
+}
+
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-gov-navy);
+  outline-offset: 2px;
+}
+
+.btn-ghost:active {
+  transform: translateY(1px);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Alert Cards - GIGW Compliant */
+.alert-card-critical {
+  background-color: var(--color-alert-critical-bg);
+  border: 1px solid var(--color-alert-critical-border);
+  border-left: 4px solid var(--color-alert-critical-border);
+  padding: 1rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.alert-card-critical .alert-header {
+  color: var(--color-alert-critical-text);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.alert-card-critical .alert-content {
+  color: var(--color-text-dark);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.alert-card-critical .alert-badge {
+  display: inline-block;
+  background-color: var(--color-alert-critical-border);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.alert-card-high {
+  background-color: var(--color-alert-high-bg);
+  border: 1px solid var(--color-alert-high-border);
+  border-left: 4px solid var(--color-alert-high-border);
+  padding: 1rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.alert-card-high .alert-header {
+  color: var(--color-alert-high-text);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.alert-card-high .alert-content {
+  color: var(--color-text-dark);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.alert-card-high .alert-badge {
+  display: inline-block;
+  background-color: var(--color-alert-high-border);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* Card Components */
+.card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: 0.375rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-border-light);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead {
+  background-color: #f1f5f9;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+thead th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-dark);
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--color-border-lighter);
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+tbody td {
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-text-dark);
+}
+
+/* Accessibility & Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-gov-navy);
+  outline-offset: 2px;
+}
+
+/* Radar Ping Animation */
+@keyframes radarPing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.radar-beacon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #dc2626;
+}
+
+.radar-beacon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #dc2626;
+  animation: radarPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Leaflet Map Styling */
+.leaflet-container {
+  background-color: #f0f4f8;
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: var(--color-bg-white);
+  color: var(--color-text-dark);
+  border-radius: 0.375rem;
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-tip {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-color: var(--color-border-light) var(--color-bg-light);
+  scrollbar-width: thin;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+.high-contrast-mode {
+  --color-gov-navy-dark: #000000;
+  --color-gov-navy: #000080;
+  --color-gov-saffron: #ff6600;
+  --color-bg-light: #ffffff;
+  --color-bg-white: #ffffff;
+  --color-text-dark: #000000;
+  --color-text-muted: #333333;
+  --color-border-light: #000000;
+  --color-border-lighter: #666666;
+}
+
+.high-contrast-mode body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.high-contrast-mode a {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+.high-contrast-mode button,
+.high-contrast-mode .btn-primary {
+  border: 2px solid #000000;
+  font-weight: bold;
+}
+
+.high-contrast-mode input,
+.high-contrast-mode select,
+.high-contrast-mode textarea {
+  border: 2px solid #000000;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* Screen Reader Only Content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus,
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}

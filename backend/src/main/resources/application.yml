@@ -1,0 +1,108 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: jeevenprahari-backend
+  profiles:
+    active: dev
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/jeevenprahari_db}
+    username: ${SPRING_DATASOURCE_USERNAME:jeevenprahari_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:jeevenprahari_secure_pass_2026}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.spatial.dialect.postgis.PostgisPG10Dialect
+    open-in-view: false
+
+  data:
+    redis:
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+      password: ${SPRING_DATA_REDIS_PASSWORD:}
+      timeout: 3000ms
+
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 30MB
+
+# JeevanPrahari Custom Configuration
+jeevenprahari:
+  product:
+    name: "JeevanPrahari"
+    tagline: "Landslide Early Warning & Risk Monitoring System for North East India"
+    version: "1.2.0"
+  
+  auth:
+    jwt-secret: ${JWT_SECRET:jeevenprahari_ultra_secure_jwt_secret_key_ner_disaster_management_2026_x89}
+    jwt-expiration-ms: 86400000 # 24 hours
+    jwt-refresh-expiration-ms: 604800000 # 7 days
+    google-client-id: ${GOOGLE_CLIENT_ID:jeevenprahari-demo-client-id.apps.googleusercontent.com}
+
+  ml-service:
+    base-url: ${ML_SERVICE_URL:http://localhost:8000}
+    connect-timeout-ms: 5000
+    read-timeout-ms: 10000
+
+  storage:
+    minio:
+      endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+      access-key: ${MINIO_ACCESS_KEY:minioadmin}
+      secret-key: ${MINIO_SECRET_KEY:minioadmin}
+      bucket-name: jeevenprahari-reports
+      public-url: ${MINIO_PUBLIC_URL:http://localhost:9000/jeevenprahari-reports}
+
+  external-apis:
+    open-meteo:
+      base-url: https://api.open-meteo.com/v1
+    # IMD API adapter (swappable; Open-Meteo is working default fallback)
+    imd:
+      enabled: false # TODO: needs IMD IP whitelisting approval from user
+      base-url: https://api.imd.gov.in
+      api-key: ${IMD_API_KEY:}
+    fast2sms:
+      enabled: false # TODO: needs Fast2SMS API key from user
+      api-key: ${FAST2SMS_API_KEY:}
+      sender-id: "PAHAAR"
+    fcm:
+      enabled: false # TODO: needs Firebase Cloud Messaging credentials
+      credentials-path: ${FCM_CREDENTIALS_PATH:}
+
+  rabbitmq:
+    exchange: landslide.exchange
+    weather-queue: landslide.weather.queue
+    risk-queue: landslide.risk.queue
+    alert-queue: landslide.alert.queue
+    sms-queue: landslide.sms.queue
+    routing-key-weather: landslide.weather.#
+    routing-key-risk: landslide.risk.#
+    routing-key-alert: landslide.alert.#
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    com.jeevenprahari: INFO
+    org.springframework.security: WARN

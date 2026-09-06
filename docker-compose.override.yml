@@ -1,0 +1,21 @@
+# Local Development Override (Hot Reload & Port Bindings)
+version: '3.8'
+
+services:
+  backend:
+    volumes:
+      - ./backend/src:/app/src
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+
+  ml-service:
+    volumes:
+      - ./ml-service/app:/app/app
+      - ./ml-service/trained_artifacts:/app/trained_artifacts
+    environment:
+      PYTHONUNBUFFERED: "1"
+
+  frontend:
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public

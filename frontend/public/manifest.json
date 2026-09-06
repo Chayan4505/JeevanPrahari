@@ -1,0 +1,17 @@
+{
+  "short_name": "PahaarSaathi",
+  "name": "PahaarSaathi — Mountain Companion Landslide Warning",
+  "description": "Real-time landslide prediction, early warning, and disaster risk monitoring across North Eastern India.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait"
+}

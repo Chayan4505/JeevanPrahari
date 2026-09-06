@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="mountGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="alertGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ef4444" />
+    </linearGradient>
+  </defs>
+  <!-- Mountain Peaks -->
+  <polygon points="10,85 45,25 65,60 85,30 95,85" fill="url(#mountGrad)" opacity="0.9" />
+  <polygon points="35,85 55,42 75,85" fill="#065f46" opacity="0.6" />
+  <!-- Radar Wave / Satellite Beacon -->
+  <circle cx="50" cy="22" r="6" fill="#ef4444" />
+  <path d="M38 16 A 16 16 0 0 1 62 16" stroke="url(#alertGrad)" stroke-width="3" stroke-linecap="round" fill="none" />
+  <path d="M30 10 A 26 26 0 0 1 70 10" stroke="url(#alertGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.75" />
+</svg>

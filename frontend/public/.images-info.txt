@@ -1,0 +1,39 @@
+HIGH RISK ZONE & ALERT SATELLITE IMAGERY SETUP
+===============================================
+
+Place your images in this (public/) folder with these exact filenames:
+
+HIGH RISK ZONES (Risk Map Page)
+==============================
+
+1. high-risk-zone-1.jpg
+   Location: Mundakkai Zone, East Khasi Hills
+   Type: Before landslide event - April 2024
+   Status: ✅ Ready to use
+
+2. high-risk-zone-2.jpg
+   Location: Chooramtala Impact Zone, Mundakkai
+   Type: After landslide event - August 2024
+   Status: ✅ Ready to use
+
+3. high-risk-zone-3.jpg
+   Location: Active Risk Corridor, Dima Hasao District
+   Type: Current satellite imagery - 2024
+   Status: ✅ Ready to use
+
+ALERT PAGE EVIDENCE & DOCUMENTATION (Alerts Page)
+==================================================
+
+4. alert-field-photo-1.jpg
+   Position: Field Photo 1 (Left side)
+   Type: Evidence & Documentation photo from field teams
+   Status: ⏳ Ready to upload
+
+5. alert-field-photo-2.jpg
+   Position: Field Photo 2 (Right side)
+   Type: Evidence & Documentation photo from NDMA personnel
+   Status: ⏳ Ready to upload
+
+Once you place the images with these exact filenames, they will automatically appear:
+- Risk zone images on the Risk Map page (right panel)
+- Field photos on the Alert CAP Viewer modal (Evidence & Documentation section)
