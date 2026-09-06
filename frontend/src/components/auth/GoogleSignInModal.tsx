@@ -13,22 +13,26 @@ export const GoogleSignInModal: React.FC<GoogleSignInModalProps> = ({ isOpen, on
   const { language } = useLanguage();
 
   useEffect(() => {
+    if (!isOpen) return;
     // Initialize Google Identity Services if script is loaded
     const win = window as any;
     if (win.google && win.google.accounts && win.google.accounts.id) {
       try {
         win.google.accounts.id.initialize({
-          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || '',
           callback: (response: any) => {
             if (response.credential) {
               loginWithGoogle(response.credential, language).then(() => onClose());
             }
           },
         });
-        win.google.accounts.id.renderButton(
-          document.getElementById('googleSignInDiv'),
-          { theme: 'filled_blue', size: 'large', shape: 'pill', width: '100%' }
-        );
+        const container = document.getElementById('googleSignInDiv');
+        if (container) {
+          win.google.accounts.id.renderButton(
+            container,
+            { theme: 'filled_blue', size: 'large', shape: 'pill', width: '100%' }
+          );
+        }
       } catch (e) {
         console.warn('Google GSI initialization notice:', e);
       }

@@ -18,7 +18,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { GoogleSignInModal } from '../auth/GoogleSignInModal';
-import { JeevanPrahariLogo } from './Logo';
+import { JeevanPrahariLogo } from './logo';
 
 export const GovDualHeader: React.FC = () => {
   const { user, isAuthenticated, logout, hasRole } = useAuth();

@@ -70,7 +70,7 @@ export const ModelMetricsCard: React.FC = () => {
         recall: 0.9560,
         roc_auc: 0.9940,
       },
-    } as ModelMetrics;
+    } as unknown as ModelMetrics;
   }
 
   const { model_metadata, tier1_static_metrics, tier2_dynamic_metrics } = finalMetrics;
