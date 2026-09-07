@@ -31,17 +31,26 @@ export const GovDualHeader: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  const navItems = [
+  const primaryNavItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/map', label: 'Risk Map', icon: MapPin },
     { path: '/report', label: 'Report Incident', icon: FileText },
     { path: '/alerts', label: 'CAP Alerts', icon: AlertTriangle },
-    ...(isAuthenticated && hasRole(['ROLE_DISTRICT_ADMIN', 'ROLE_SUPER_ADMIN', 'ROLE_FIELD_OFFICER'])
-      ? [{ path: '/dashboard', label: 'Analytics', icon: BarChart3 }]
-      : []),
+    { path: '/dashboard', label: 'District Dashboard', icon: BarChart3, adminOnly: true },
+  ];
+
+  const secondaryNavItems = [
     { path: '/model-insights', label: 'Model Insights', icon: BarChart3 },
     { path: '/about', label: 'Help', icon: HelpCircle },
   ];
+
+  const handleNavClick = (path: string, adminOnly?: boolean) => {
+    if (adminOnly && (!isAuthenticated || !hasRole(['ROLE_DISTRICT_ADMIN', 'ROLE_SUPER_ADMIN', 'ROLE_FIELD_OFFICER']))) {
+      setIsAuthModalOpen(true);
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
@@ -69,21 +78,36 @@ export const GovDualHeader: React.FC = () => {
 
             {/* Center: Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center px-6">
-              {navItems.slice(0, 4).map((item) => {
+              {primaryNavItems.map((item) => {
                 const Icon = item.icon;
+                const isCurrent = isActive(item.path);
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
+                    onClick={(e) => {
+                      if (!handleNavClick(item.path, item.adminOnly)) {
+                        e.preventDefault();
+                      }
+                    }}
                     className={`relative px-4 py-2 rounded text-sm font-semibold transition-all duration-200 flex items-center gap-2 whitespace-nowrap group ${
-                      isActive(item.path)
+                      item.adminOnly
+                        ? isCurrent
+                          ? 'text-white bg-amber-600'
+                          : 'text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300'
+                        : isCurrent
                         ? 'text-gov-navy-900 bg-slate-100'
                         : 'text-slate-700 hover:text-gov-navy-900 hover:bg-slate-50'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
                     <span>{item.label}</span>
-                    {isActive(item.path) && (
+                    {item.adminOnly && (
+                      <span className="px-1.5 py-0.5 text-[10px] uppercase font-bold rounded bg-amber-200 text-amber-900 border border-amber-400">
+                        Admin
+                      </span>
+                    )}
+                    {isCurrent && !item.adminOnly && (
                       <div className="absolute bottom-0 left-4 right-4 h-1 bg-gov-saffron-500 rounded-full" />
                     )}
                   </Link>
@@ -123,13 +147,25 @@ export const GovDualHeader: React.FC = () => {
 
                   {/* Dropdown Menu */}
                   {isUserMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg border border-slate-300 shadow-lg z-50 overflow-hidden">
+                    <div className="absolute right-0 mt-2 w-60 bg-white rounded-lg border border-slate-300 shadow-lg z-50 overflow-hidden">
                       <div className="px-4 py-3 border-b border-slate-200 bg-slate-50">
                         <p className="text-sm font-bold text-slate-900">{user.name}</p>
                         <p className="text-xs text-slate-600 mt-0.5">{user.email}</p>
                         <span className="inline-block mt-2 text-xs px-2 py-1 rounded-full bg-gov-navy-100 text-gov-navy-900 font-semibold">
                           {user.role.replace('ROLE_', '')}
                         </span>
+                      </div>
+                      <div className="py-2 border-b border-slate-200">
+                        {hasRole(['ROLE_DISTRICT_ADMIN', 'ROLE_SUPER_ADMIN', 'ROLE_FIELD_OFFICER']) && (
+                          <Link
+                            to="/dashboard"
+                            onClick={() => setIsUserMenuOpen(false)}
+                            className="w-full text-left px-4 py-2 text-sm text-amber-900 font-semibold hover:bg-amber-50 flex items-center gap-2 transition-colors"
+                          >
+                            <BarChart3 className="w-4 h-4 text-amber-700" />
+                            District Admin Dashboard
+                          </Link>
+                        )}
                       </div>
                       <div className="py-2">
                         <button
@@ -171,13 +207,18 @@ export const GovDualHeader: React.FC = () => {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden border-t border-slate-300 bg-slate-50 px-4 py-3 space-y-2">
-            {navItems.map((item) => {
+            {[...primaryNavItems, ...secondaryNavItems].map((item) => {
               const Icon = item.icon;
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    if (!handleNavClick(item.path, (item as any).adminOnly)) {
+                      e.preventDefault();
+                    }
+                    setIsMobileMenuOpen(false);
+                  }}
                   className={`block px-4 py-2 rounded text-sm font-semibold transition-all ${
                     isActive(item.path)
                       ? 'bg-gov-navy-100 text-gov-navy-900'
@@ -216,7 +257,7 @@ export const GovDualHeader: React.FC = () => {
               OFFICIAL GOVERNMENT PORTAL
             </div>
             <div className="flex items-center gap-1">
-              {navItems.slice(4).map((item) => {
+              {secondaryNavItems.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Link
