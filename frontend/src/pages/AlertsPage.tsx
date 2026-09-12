@@ -95,10 +95,10 @@ export const AlertsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pb-16 space-y-0">
+    <div className="min-h-screen pb-16 space-y-0 bg-gradient-to-b from-slate-50 to-white">
       
       {/* NDMA CAP Alerts Section */}
-      <div className="w-full bg-white border-b border-slate-300 py-12">
+      <div className="w-full bg-white/80 backdrop-blur-sm border-b border-slate-200 py-12">
         <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -127,10 +127,10 @@ export const AlertsPage: React.FC = () => {
           </div>
 
           {/* Filter Bar */}
-          <div className="p-4 rounded-md bg-slate-50 border border-slate-300 flex flex-wrap items-center justify-between gap-4">
+          <div className="p-4 rounded-lg bg-white border border-slate-200 flex flex-wrap items-center justify-between gap-4 shadow-sm">
             <div className="flex items-center gap-3">
-              <Filter className="w-4 h-4 text-gov-navy-900" />
-              <span className="font-semibold text-slate-900 text-sm">Filter Alerts:</span>
+              <Filter className="w-4 h-4 text-slate-600" />
+              <span className="font-semibold text-slate-700 text-sm">Filter Alerts:</span>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -138,7 +138,7 @@ export const AlertsPage: React.FC = () => {
               <select
                 value={selectedDistrict}
                 onChange={(e) => setSelectedDistrict(e.target.value)}
-                className="bg-white border border-slate-300 rounded-md px-3 py-2 text-sm text-slate-900 font-medium"
+                className="bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-900 font-medium shadow-sm hover:border-slate-300 transition-colors"
               >
                 <option value="ALL">All NER Districts</option>
                 {districts.map((d) => (
@@ -152,7 +152,7 @@ export const AlertsPage: React.FC = () => {
               <select
                 value={selectedSeverity}
                 onChange={(e) => setSelectedSeverity(e.target.value)}
-                className="bg-white border border-slate-300 rounded-md px-3 py-2 text-sm text-slate-900 font-medium"
+                className="bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-900 font-medium shadow-sm hover:border-slate-300 transition-colors"
               >
                 <option value="ALL">All Severities</option>
                 <option value="Extreme">Extreme (Red)</option>
@@ -172,7 +172,7 @@ export const AlertsPage: React.FC = () => {
                   <div
                     key={alert.id}
                     onClick={() => setSelectedCapAlert(alert)}
-                    className={`p-6 rounded-md border transition-all space-y-4 group cursor-pointer hover:shadow-md ${colors.bg} ${colors.border}`}
+                    className={`p-6 rounded-lg border transition-all space-y-4 group cursor-pointer hover:shadow-md shadow-sm ${colors.bg} ${colors.border}`}
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-grow">
@@ -210,7 +210,7 @@ export const AlertsPage: React.FC = () => {
                           e.stopPropagation();
                           setSelectedCapAlert(alert);
                         }}
-                        className="px-3 py-2 rounded-md bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-semibold text-xs flex items-center gap-2 transition-colors"
+                        className="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-900 font-semibold text-xs flex items-center gap-2 transition-colors shadow-sm"
                       >
                         <Code className="w-4 h-4" />
                         <span>View CAP XML</span>
@@ -220,8 +220,8 @@ export const AlertsPage: React.FC = () => {
                 );
               })
             ) : (
-              <div className="col-span-full p-12 text-center rounded-md bg-slate-50 border border-slate-300">
-                <AlertCircle className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+              <div className="col-span-full p-12 text-center rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
+                <AlertCircle className="w-12 h-12 text-slate-300 mx-auto mb-4" />
                 <p className="text-base text-slate-600 font-medium">No active NDMA CAP alerts at this time</p>
               </div>
             )}
@@ -230,27 +230,27 @@ export const AlertsPage: React.FC = () => {
       </div>
 
       {/* Crowd-Sourced Field Reports Section */}
-      <div className="w-full bg-slate-50 px-4 sm:px-6 lg:px-8 py-12 space-y-6">
+      <div className="w-full bg-white/50 backdrop-blur-sm px-4 sm:px-6 lg:px-8 py-12 space-y-6 border-t border-slate-200">
         <div className="w-full max-w-[1800px] mx-auto">
-          <div className="flex items-center justify-between gap-4 pb-6 border-b border-slate-300">
+          <div className="flex items-center justify-between gap-4 pb-6 border-b border-slate-200">
             <div className="flex items-center gap-3">
-              <FileText className="w-5 h-5 text-gov-navy-900" />
+              <FileText className="w-5 h-5 text-slate-600" />
               <div>
-                <h2 className="text-2xl font-bold text-gov-navy-900">
+                <h2 className="text-2xl font-bold text-slate-900">
                   Crowd-Sourced Field Reports
                 </h2>
                 <p className="text-sm text-slate-600 mt-1">Real-time reports from citizens & field officers</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold text-slate-700 bg-white px-3 py-1.5 rounded-md border border-slate-300">
+              <span className="text-sm font-semibold text-slate-700 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm">
                 {recentReports.length} reports
               </span>
               {recentReports.length < 20 && (
                 <button
                   onClick={seedMoreReports}
                   disabled={seeding}
-                  className="px-3 py-1.5 rounded-md bg-gov-navy-100 hover:bg-gov-navy-200 text-gov-navy-900 font-semibold text-sm border border-gov-navy-300 transition-colors disabled:opacity-50"
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-sm border border-slate-300 transition-colors disabled:opacity-50 shadow-sm"
                 >
                   {seeding ? 'Generating...' : 'Add Sample Data'}
                 </button>
@@ -275,7 +275,7 @@ export const AlertsPage: React.FC = () => {
                     <div
                       key={report.id}
                       onClick={() => setSelectedReport(report)}
-                      className={`p-4 rounded-md border transition-all space-y-3 flex flex-col group hover:shadow-md cursor-pointer overflow-hidden ${colors.bg} ${colors.border}`}
+                      className={`p-4 rounded-lg border transition-all space-y-3 flex flex-col group hover:shadow-md cursor-pointer overflow-hidden shadow-sm ${colors.bg} ${colors.border}`}
                     >
                       {/* Status Badges */}
                       <div className="flex items-start justify-between gap-2 flex-wrap">
@@ -292,7 +292,7 @@ export const AlertsPage: React.FC = () => {
                       </div>
 
                       {/* Thumbnail Image */}
-                      <div className="w-full h-40 rounded-md border border-slate-300 bg-slate-200 overflow-hidden group-hover:border-slate-400 transition-all relative">
+                      <div className="w-full h-40 rounded-lg border border-slate-200 bg-slate-100 overflow-hidden group-hover:border-slate-300 transition-all relative shadow-sm">
                         <img
                           src={`/report-photo-${report.id}.jpg`}
                           alt="Report"
@@ -303,7 +303,7 @@ export const AlertsPage: React.FC = () => {
                             if (parent && !parent.querySelector('[data-placeholder]')) {
                               const placeholder = document.createElement('div');
                               placeholder.setAttribute('data-placeholder', 'true');
-                              placeholder.className = 'absolute inset-0 bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center text-slate-600 text-3xl';
+                              placeholder.className = 'absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-600 text-3xl';
                               placeholder.innerHTML = '<span>📸</span>';
                               parent.appendChild(placeholder);
                             }
@@ -322,14 +322,14 @@ export const AlertsPage: React.FC = () => {
                       </div>
 
                       {/* Type Badge */}
-                      <div className="pt-2 border-t border-slate-300">
-                        <span className={`inline-block text-xs px-2.5 py-1 rounded-sm font-medium ${colors.badge}`}>
+                      <div className="pt-2 border-t border-slate-200">
+                        <span className={`inline-block text-xs px-2.5 py-1 rounded-lg font-medium ${colors.badge}`}>
                           {report.landslideType.replace('_', ' ')}
                         </span>
                       </div>
 
                       {/* Reporter Info & Time */}
-                      <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-300 text-xs">
+                      <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-200 text-xs">
                         <span className="text-slate-700 truncate font-medium">
                           {report.reporterName}
                         </span>
@@ -342,14 +342,14 @@ export const AlertsPage: React.FC = () => {
                 })}
             </div>
           ) : (
-            <div className="p-12 text-center rounded-md bg-white border border-slate-300">
-              <AlertCircle className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+            <div className="p-12 text-center rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
+              <AlertCircle className="w-12 h-12 text-slate-300 mx-auto mb-4" />
               <p className="text-base text-slate-900 mb-2 font-medium">No field reports yet</p>
               <p className="text-sm text-slate-600 mb-6">Reports from field officers and citizens will appear here</p>
               <button
                 onClick={seedMoreReports}
                 disabled={seeding}
-                className="px-5 py-2.5 rounded-md bg-gov-navy-900 hover:bg-gov-navy-700 text-white font-semibold text-sm border border-gov-navy-700 transition-colors disabled:opacity-50"
+                className="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm border border-slate-800 transition-colors disabled:opacity-50 shadow-sm"
               >
                 {seeding ? 'Generating...' : 'Generate Sample Reports'}
               </button>

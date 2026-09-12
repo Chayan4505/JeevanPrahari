@@ -281,11 +281,11 @@ export const RiskMapPage: React.FC = () => {
                 />
                 
                 {/* Risk Level Badge - Top Right Corner */}
-                <div className="absolute top-4 right-4 z-30">
-                  <span className={`inline-block px-3 py-1.5 rounded-lg text-white text-xs font-bold border shadow-lg ${
+                <div className="absolute top-3 right-3 z-10">
+                  <span className={`inline-block px-4 py-2 rounded-lg text-white text-xs font-bold border shadow-lg whitespace-nowrap ${
                     zone.riskLevel === 'VERY_HIGH' 
-                      ? 'bg-red-600 border-red-500' 
-                      : 'bg-orange-600 border-orange-500'
+                      ? 'bg-red-600 border-red-500 hover:bg-red-700' 
+                      : 'bg-orange-600 border-orange-500 hover:bg-orange-700'
                   }`}>
                     {zone.riskLevel === 'VERY_HIGH' ? 'VERY HIGH' : 'HIGH'}
                   </span>

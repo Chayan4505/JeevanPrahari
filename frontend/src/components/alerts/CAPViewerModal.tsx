@@ -23,9 +23,9 @@ export const CAPViewerModal: React.FC<CAPViewerModalProps> = ({ alert, isOpen, o
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
       {/* Outer Card: Set overflow-hidden and rounded-2xl to clip header gradients properly */}
-      <div className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/80 rounded-2xl max-w-3xl w-full shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
+      <div className="bg-gradient-to-b from-white to-slate-50 border border-slate-200 rounded-2xl max-w-3xl w-full shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
         
         {/* Fixed Header with Severity Gradient */}
         <div className={`bg-gradient-to-r ${getSeverityColor(alert.severity)} px-6 py-6 relative overflow-hidden flex-shrink-0`}>
@@ -62,49 +62,49 @@ export const CAPViewerModal: React.FC<CAPViewerModalProps> = ({ alert, isOpen, o
         </div>
 
         {/* Scrollable Main Content */}
-        <div className="p-6 space-y-6 text-white overflow-y-auto flex-grow">
+        <div className="p-6 space-y-6 text-slate-900 overflow-y-auto flex-grow">
           
           {/* Alert Details Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Affected Area */}
-            <div className="p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="p-1.5 bg-emerald-500/20 rounded-lg text-emerald-400">
+                <div className="p-1.5 bg-emerald-50 rounded-lg text-emerald-600">
                   <MapPin className="w-4 h-4" />
                 </div>
-                <h4 className="font-bold text-white text-sm">Affected Area</h4>
+                <h4 className="font-bold text-slate-900 text-sm">Affected Area</h4>
               </div>
-              <p className="text-slate-300 text-xs leading-relaxed">
+              <p className="text-slate-700 text-xs leading-relaxed">
                 {alert.description || 'Geographic area and region details'}
               </p>
             </div>
 
             {/* Time Information */}
-            <div className="p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="p-1.5 bg-blue-500/20 rounded-lg text-blue-400">
+                <div className="p-1.5 bg-blue-50 rounded-lg text-blue-600">
                   <Clock className="w-4 h-4" />
                 </div>
-                <h4 className="font-bold text-white text-sm">Timeline</h4>
+                <h4 className="font-bold text-slate-900 text-sm">Timeline</h4>
               </div>
-              <div className="space-y-1 text-xs text-slate-300">
-                <p><span className="text-slate-400">Alert Sent:</span> {new Date(alert.sentAt).toLocaleString('en-IN')}</p>
-                <p><span className="text-slate-400">Status:</span> {alert.status}</p>
-                <p><span className="text-slate-400">Urgency:</span> {alert.urgency}</p>
+              <div className="space-y-1 text-xs text-slate-700">
+                <p><span className="text-slate-600">Alert Sent:</span> {new Date(alert.sentAt).toLocaleString('en-IN')}</p>
+                <p><span className="text-slate-600">Status:</span> {alert.status}</p>
+                <p><span className="text-slate-600">Urgency:</span> {alert.urgency}</p>
               </div>
             </div>
           </div>
 
           {/* Action Required Section */}
           {alert.instruction && (
-            <div className="p-5 rounded-xl bg-emerald-950/30 border border-emerald-500/40">
+            <div className="p-5 rounded-xl bg-green-50 border border-green-200 shadow-sm">
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-emerald-500/20 rounded-lg text-emerald-400 flex-shrink-0">
+                <div className="p-2 bg-green-100 rounded-lg text-green-700 flex-shrink-0">
                   <Zap className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-emerald-300 text-sm mb-1">Action Required</h4>
-                  <p className="text-emerald-200 text-xs leading-relaxed">
+                  <h4 className="font-bold text-green-900 text-sm mb-1">Action Required</h4>
+                  <p className="text-green-800 text-xs leading-relaxed">
                     {alert.instruction}
                   </p>
                 </div>
@@ -113,43 +113,43 @@ export const CAPViewerModal: React.FC<CAPViewerModalProps> = ({ alert, isOpen, o
           )}
 
           {/* Rescue Operations & Response */}
-          <div className="p-5 rounded-xl bg-slate-800/50 border border-slate-700/50">
+          <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="p-1.5 bg-orange-500/20 rounded-lg text-orange-400">
+              <div className="p-1.5 bg-orange-50 rounded-lg text-orange-600">
                 <Users className="w-4 h-4" />
               </div>
-              <h4 className="font-bold text-white text-base">Rescue & Response Operations</h4>
+              <h4 className="font-bold text-slate-900 text-base">Rescue & Response Operations</h4>
             </div>
             <div className="grid grid-cols-3 gap-3 mb-3">
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-700/30">
-                <p className="text-[10px] text-slate-400 mb-1">Response Status</p>
-                <p className="font-bold text-orange-300 text-xs">Active</p>
+              <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-sm">
+                <p className="text-[10px] text-slate-600 mb-1">Response Status</p>
+                <p className="font-bold text-orange-600 text-xs">Active</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-700/30">
-                <p className="text-[10px] text-slate-400 mb-1">Units Deployed</p>
-                <p className="font-bold text-blue-300 text-xs">12+</p>
+              <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-sm">
+                <p className="text-[10px] text-slate-600 mb-1">Units Deployed</p>
+                <p className="font-bold text-blue-600 text-xs">12+</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-700/30">
-                <p className="text-[10px] text-slate-400 mb-1">Coordinating Agency</p>
-                <p className="font-bold text-emerald-300 text-xs">NDMA/SDRF</p>
+              <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-sm">
+                <p className="text-[10px] text-slate-600 mb-1">Coordinating Agency</p>
+                <p className="font-bold text-emerald-600 text-xs">NDMA/SDRF</p>
               </div>
             </div>
-            <p className="text-slate-300 text-xs leading-relaxed">
+            <p className="text-slate-700 text-xs leading-relaxed">
               Official rescue and mitigation operations are currently underway. Emergency response teams and SDRF units are coordinating with state authorities. For real-time updates, please follow official NDMA channels.
             </p>
           </div>
 
           {/* Evidence Section */}
-          <div className="p-5 rounded-xl bg-slate-800/50 border border-slate-700/50">
+          <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="p-1.5 bg-purple-500/20 rounded-lg text-purple-400">
+              <div className="p-1.5 bg-purple-50 rounded-lg text-purple-600">
                 <Shield className="w-4 h-4" />
               </div>
-              <h4 className="font-bold text-white text-base">Evidence & Documentation</h4>
+              <h4 className="font-bold text-slate-900 text-base">Evidence & Documentation</h4>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {/* Field Photo 1 */}
-              <div className="relative aspect-video rounded-lg bg-gradient-to-br from-slate-700 to-slate-900 border border-slate-700/50 overflow-hidden group">
+              <div className="relative aspect-video rounded-lg bg-gradient-to-br from-slate-200 to-slate-300 border border-slate-300 overflow-hidden group shadow-sm">
                 <img
                   src="/alert-field-photo-1.jpg"
                   alt="Field Photo 1"
@@ -158,7 +158,7 @@ export const CAPViewerModal: React.FC<CAPViewerModalProps> = ({ alert, isOpen, o
               </div>
               
               {/* Field Photo 2 */}
-              <div className="relative aspect-video rounded-lg bg-gradient-to-br from-slate-700 to-slate-900 border border-slate-700/50 overflow-hidden group">
+              <div className="relative aspect-video rounded-lg bg-gradient-to-br from-slate-200 to-slate-300 border border-slate-300 overflow-hidden group shadow-sm">
                 <img
                   src="/alert-field-photo-2.jpg"
                   alt="Field Photo 2"
@@ -166,28 +166,28 @@ export const CAPViewerModal: React.FC<CAPViewerModalProps> = ({ alert, isOpen, o
                 />
               </div>
             </div>
-            <p className="text-slate-400 text-[10px] mt-3">
+            <p className="text-slate-600 text-[10px] mt-3">
               Official photographs and satellite imagery from affected zones are being documented by field teams and NDMA personnel.
             </p>
           </div>
 
           {/* Contacts & Resources */}
-          <div className="p-5 rounded-xl bg-slate-800/50 border border-slate-700/50">
-            <h4 className="font-bold text-white text-sm mb-3 flex items-center gap-2">
+          <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+            <h4 className="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
               <FileText className="w-4 h-4" />
               Emergency Contacts & Resources
             </h4>
             <div className="space-y-2 text-xs">
-              <p className="text-slate-300"><span className="text-slate-400">📞 Disaster Helpline:</span> 1977 or 112</p>
-              <p className="text-slate-300"><span className="text-slate-400">📡 Official Source:</span> {alert.sender || 'NDMA-EarlyWarning@ner.gov.in'}</p>
-              <p className="text-slate-300"><span className="text-slate-400">🆔 Alert ID:</span> <span className="font-mono text-[10px] text-emerald-400">{alert.identifier}</span></p>
+              <p className="text-slate-700"><span className="text-slate-600">📞 Disaster Helpline:</span> 1977 or 112</p>
+              <p className="text-slate-700"><span className="text-slate-600">📡 Official Source:</span> {alert.sender || 'NDMA-EarlyWarning@ner.gov.in'}</p>
+              <p className="text-slate-700"><span className="text-slate-600">🆔 Alert ID:</span> <span className="font-mono text-[10px] text-emerald-600">{alert.identifier}</span></p>
             </div>
           </div>
 
           {/* Technical Details Toggle */}
           <button
             onClick={() => setShowXmlDetails(!showXmlDetails)}
-            className="w-full p-3 rounded-xl border border-slate-700/50 text-slate-300 hover:text-white hover:border-slate-600/50 transition-colors flex items-center justify-between text-xs font-medium"
+            className="w-full p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300 hover:bg-slate-50 transition-colors flex items-center justify-between text-xs font-medium shadow-sm"
           >
             <span className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
@@ -198,8 +198,8 @@ export const CAPViewerModal: React.FC<CAPViewerModalProps> = ({ alert, isOpen, o
 
           {/* XML Details (Collapsible) */}
           {showXmlDetails && (
-            <div className="rounded-xl bg-slate-950 p-3 border border-slate-800 overflow-x-auto">
-              <pre className="font-mono text-[10px] text-emerald-300 whitespace-pre-wrap break-words leading-relaxed">
+            <div className="rounded-xl bg-slate-100 p-3 border border-slate-300 overflow-x-auto shadow-sm">
+              <pre className="font-mono text-[10px] text-slate-800 whitespace-pre-wrap break-words leading-relaxed">
                 {alert.capXml || 'CAP XML data not available'}
               </pre>
             </div>
@@ -207,14 +207,14 @@ export const CAPViewerModal: React.FC<CAPViewerModalProps> = ({ alert, isOpen, o
         </div>
 
         {/* Fixed Footer */}
-        <div className="p-4 border-t border-slate-800 flex items-center justify-between bg-slate-900/50 flex-shrink-0">
-          <div className="flex items-center gap-2 text-xs text-slate-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <div className="p-4 border-t border-slate-200 flex items-center justify-between bg-slate-50 flex-shrink-0 shadow-sm">
+          <div className="flex items-center gap-2 text-xs text-slate-600">
+            <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
             <span>NDMA CAP v1.2 Compliant</span>
           </div>
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs transition-colors"
+            className="px-5 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-900 font-medium text-xs transition-colors"
           >
             Close
           </button>
